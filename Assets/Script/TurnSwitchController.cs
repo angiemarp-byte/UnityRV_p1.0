@@ -15,7 +15,7 @@ public class TurnSwitchController : MonoBehaviour
         if (snapTurnActive == true)
         {
             snapTurnProvider.turnAmount = 0;
-            continuousTurnProvider.turnSpeed = 60;
+            continuousTurnProvider.turnSpeed = 20;
 
             snapTurnActive = false;
         }

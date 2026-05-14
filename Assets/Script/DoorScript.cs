@@ -4,33 +4,28 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour
 {
-    public AudioSource audioSource;
-
-    public AudioClip abrirSonido;
-    public AudioClip cerrarSonido;
-
     private bool abierta = false;
+
+    private Quaternion cerradaRotacion;
+    private Quaternion abiertaRotacion;
+
+    void Start()
+    {
+        cerradaRotacion = Quaternion.Euler(0, 0, 0);
+        abiertaRotacion = Quaternion.Euler(0, 90, 0);
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            if (!abierta)
-            {
-                transform.Rotate(0, 90, 0);
+            Debug.Log("Intentando abrir/cerrar");
 
-                audioSource.PlayOneShot(abrirSonido);
+            abierta = !abierta;
 
-                abierta = true;
-            }
-            else
-            {
-                transform.Rotate(0, -90, 0);
-
-                audioSource.PlayOneShot(cerrarSonido);
-
-                abierta = false;
-            }
+            transform.rotation = abierta
+                ? abiertaRotacion
+                : cerradaRotacion;
         }
     }
 }
